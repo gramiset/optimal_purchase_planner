@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Home</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="h_menu_body">
+    <div class="body">
+        <div class="home">
+           <h1>Optimal Purchase Plan Estimator</h1>
+           <span>Below are list of functionalities which we can do with this system.</span>
+            <div class="list">
+            <ul>
+                <li>Users can register their own accounts. Only registered users can use the system functionalities.</li>
+                <li>Allows users to upload their products past monthly sales data to predict the future demand.</li>
+                <li>Shows uploaded files to select the previously uploaded file.</li>
+                <li>Shows selected file data after performing preprocessing and cleanup.</li>
+                <li>Calculates Mean, Standard Deviation and Normal Distribution of sales data.</li>
+                <li>Visualize the sales data using Seasonal Decompose Plots.</li>
+                <li>Shows whether sales data is Stationary or Non-Stationary using plots.</li>
+                <li>Shows the ARIMA model test results to explain whether the prediction values are reliable or not.</li>
+                <li>Finally, shows the next 12 months predicted product demand.</li>
+                <li>If additional product info file uploaded then shows the next 12 months shortfalls.</li>
+                <li>If additional product info file uploaded then shows the additional cost incur because of shortfalls.</li>
+            </ul>
+            </div>
+            <br>
+           <span class="info"><i>Please contact us at <b><a href="mailto:info.purchaseplanner@gmail.com" target="_blank">info.purchaseplanner@gmail.com</a></b> for any additional information or issues.</i></span>
+        </div>
+    </div>
+    </section>
+
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+  </body>
+</html>

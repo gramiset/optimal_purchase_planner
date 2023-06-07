@@ -1,0 +1,14 @@
+Flask
+pandas
+scipy
+numpy
+psycopg2
+gunicorn
+pmdarima
+statsmodels
+scikit-learn
+matplotlib
+seaborn
+google-cloud-storage
+fsspec
+gcsfs

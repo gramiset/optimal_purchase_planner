@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Data Stationary</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+    <div class="body">
+    <div class="report">
+      <h1>Stationary Test Results</h1>
+      {% for row in data %}
+      <div class="sub-title">{{row[0]}} ADF Test Results</div>
+      <div class="stationary-table">
+      <table>
+        <tr>
+          <th>P-Value</th>
+          <th>Is Stationary?</th>
+        </tr>
+        <tr>
+          <td>{{row[2][0]}}</td>
+          <td>{{row[2][1]}}</td>
+        </tr>
+      </table>
+        </div>
+      <br>
+      <div class="sub-title">{{row[0]}} Adfuller Test Results</div>
+      <div class="stationary-table">
+       <table>
+        <tr>
+          <th>ADF Value</th>
+          <th>P-Value</th>
+          <th>No.Of Lags</th>
+          <th>No.Of Observations Used</th>
+          <th>Critical Value 1%</th>
+          <th>Critical Value 5%</th>
+          <th>Critical Value 10%</th>
+          <th>Is Stationary?</th>
+        </tr>
+        <tr>
+          <td>{{row[3][0]}}</td>
+          <td>{{row[3][1]}}</td>
+          <td>{{row[3][2]}}</td>
+          <td>{{row[3][3]}}</td>
+          <td>{{row[3][4]}}</td>
+          <td>{{row[3][5]}}</td>
+          <td>{{row[3][6]}}</td>
+          <td>{{row[3][7]}}</td>
+        </tr>
+      </table>
+        </div>
+      <br>
+      <div class="sub-title">{{row[0]}} Plot</div>
+        <div id="stationary_plot"><img src="{{row[1]}}"></div>
+      <br>
+      {% endfor %}
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+  </body>
+</html>

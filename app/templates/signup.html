@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | SignUp</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body onload="setInnerHTML();setGender();">
+    <div id="menu"></div>
+    <section class="h_menu_body">
+    <div class="body">
+  <div class="signup">
+    <div class="title">Sign Up</div>
+    <div class="content">
+      <form action="signup" method="post" onsubmit="return captchaCheck();">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details required">First Name</span>
+            <input type="text" name="fname" id="fname" value="{{ fname | safe }}" placeholder="Enter your first name"
+                   required minlength="3" maxlength="50" pattern="[a-zA-Z0-9 ]+"
+                   oninvalid="this.setCustomValidity('Please enter valid first name.')"
+                   oninput="this.setCustomValidity('')">
+          </div>
+          <div class="input-box">
+            <span class="details required">Last Name</span>
+            <input type="text" name="lname" id="lname" value="{{ lname | safe }}" placeholder="Enter your last name"
+                   required minlength="3" maxlength="50" pattern="[a-zA-Z0-9 ]+"
+                   oninvalid="this.setCustomValidity('Please enter valid last name.')"
+                   oninput="this.setCustomValidity('')">
+          </div>
+          <div class="input-box">
+            <span class="details required">Email</span>
+            <input type="email" name="email" id="email" value="{{ email | safe }}" placeholder="Enter your email"
+                   required minlength="3" maxlength="255" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                   oninvalid="this.setCustomValidity('Please enter valid email address.')"
+                   oninput="this.setCustomValidity('')">
+          </div>
+          <div class="input-box">
+            <span class="details required">Date of Birth</span>
+            <input type="date" name="dob" id="dob" value="{{ dob | safe }}" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Country<span class="required"></span><span class="tooltip" data-tooltip="USA users only can register into this system.">?</span></span>
+            <input type="text" name="country" id="country" value="USA" readonly>
+          </div>
+          <div class="input-radio">
+            <span class="details required">Gender</span>
+            <div id="gender"></div>
+          </div>
+          <div class="input-box">
+            <span class="details required">Password</span>
+            <input type="password" name="pwd" id="pwd" placeholder="Enter your password"
+                   required  minlength="8" maxlength="50" pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)[A-Za-z@_$\d]{8,}$"
+                   oninvalid="this.setCustomValidity('Password should be minimum 8 characters. Only allowed special characters are @_$ and require at least 1 uppercase, 1 lowercase letter and 1 number.')"
+                   oninput="this.setCustomValidity('')">
+          </div>
+          <div class="input-box">
+            <span class="details required">Confirm Password</span>
+            <input type="password" name="cpwd" id="cpwd" placeholder="Confirm your password" required>
+          </div>
+        </div>
+        <div class="g-recaptcha" data-sitekey="{{ captcha_site_key }}"></div>
+        <div class="button">
+          <input type="submit" value="Sign Up"  onclick="passwordCheck();">
+        </div>
+        <div class="login-link">
+            Already a member? <a href="login">Login now</a>
+        </div>
+        <div class="error" id="error">
+          {{ error | safe }}
+        </div>
+      </form>
+    </div>
+  </div>
+    </div>
+    </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+    <script type="text/javascript" src="static/js/form_validate.js" ></script>
+    <script>
+        function setGender() {
+          var gender = '{{ gender | safe }}'
+          populateGender(gender)
+        }
+        pwd.onchange = passwordCheck;
+        cpwd.onkeyup = passwordCheck;
+    </script>
+  </body>
+</html>

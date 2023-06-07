@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | File Upload</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+    <div class="body">
+    <div class="upload">
+    <div class="title">Upload CSV Files</div>
+      <p>Users needs to upload below 2 files to utilize the system. Please note that File upload takes some time to perform validations and store the file into system.</p>
+      <div class="sub-title">File 1: Past Sales Data CSV file (Mandatory)</div>
+      <span class="info_text">File should contain the Past Monthly Product sales quantities as CSV. Missed months data replace with <b>"Mean"</b> values of other months data. Please download <a href="{{sample_files[0]}}" target="_blank">Sample File</a>.</span>
+      <ul>
+        <li><b>Month column:</b> First column should be always with name "Month" and contains month value in the format of <b><i>{month digits}/1/{4 digit year}</i></b>, examples: 10/1/2022, 5/1/2023.</li>
+        <li><b>Product sold quantity columns:</b> Other columns in file should be only Product columns with sale quantity numbers, column name should be "Product Names", examples: IPhone, Water Bottle, etc. Column value should be integer quantity sold in that month.</li>
+      </ul>
+
+      <div class="sub-title">File 2: Product Info CSV file (Optional)</div>
+      <span class="info_text">File should contain the metadata of each product as CSV. Below 4 columns are <b>mandatory</b>. Null values of any product replace with <b>"0"</b>. Please download <a href="{{sample_files[1]}}" download="Product_Info.CSV">Sample File</a>.</span>
+      <ul>
+        <li><b>Product column:</b> Name should be "Product" and value should be product name in sync with above CSV file.</li>
+        <li><b>Inventory Cost column:</b> Name should be "Inventory_Cost" and numeric value contains holding cost of each excess product.</li>
+        <li><b>Stockout Cost column:</b> Name should be "Stockout_Cost" and numeric value of ordering cost or any other cost because of out of stock.</li>
+        <li><b>Expecting Monthly Stock:</b> name should be "Expecting_Monthly_Stock" and integer value contains already placed monthly order quantity or expecting monthly stock.</li>
+      </ul>
+      <br>
+      <span class="info_text"><b>Max file size is 3MB which combine of both files.</b></span>
+      <form action="file_upload" method="post" enctype="multipart/form-data" >
+         <div class="file-details">
+          <div class="input-box">
+            <span class="details required">Past Months Sale Data CSV File</span>
+            <input type="file" name="file_1" id="file_1"
+                   oninvalid="this.setCustomValidity('Please choose file.')"
+                   oninput="this.setCustomValidity('')">
+          </div>
+          <div class="input-box">
+            <span class="details">Product Info CSV File</span>
+            <input type="file" name="file_2" id="file_2">
+          </div>
+        </div>
+        <div class="button">
+          <input type="submit" value="Upload">
+        </div>
+        <div class="error" id="error">
+          {{ error | safe }}
+        </div>
+      </form>
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+  </body>
+</html>

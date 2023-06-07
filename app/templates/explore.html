@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Data Exploration</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+    <div class="body">
+    <div class="report">
+      <h1>Mean and Standard Deviation of Product Past Sales Data</h1>
+      <span>System calculates mean and standard deviation values for each product past sales data from the uploaded CSV file data.
+          <br><a href="#" onclick="downloadTableAsCsv('mean_std_table','Mean_STD');">Download as CSV</a></span>
+      <div class="scrollable-table">
+        {{ mean_std_table|safe }}
+      </div>
+        <br>
+      <h1>Assumed Normal Distribution of Product Past Sales Data</h1>
+      <span>System calculates the distributions for each product past sales data from the uploaded CSV file data.<br>
+        <a href="#" onclick="downloadTableAsCsv('distribution_table','Distribution');">Download as CSV</a></span>
+      <div class="scrollable-table">
+        {{ distribution_table|safe }}
+      </div>
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+    <script type="text/javascript" src="static/js/convert.js" ></script>
+  </body>
+</html>

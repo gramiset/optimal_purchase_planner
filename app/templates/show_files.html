@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Files </title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+    <div class="body">
+    <div class="files-body">
+      <h1>Files</h1>
+      <span>Please select file to proceed. System uses the selected file to display further pages. Any time you can come back and select different file. <br> <b>Note:</b> IN-PROGRESS status files takes couple of minutes to complete preprocessing. Please refresh page. </span>
+      <div class="error" id="error">
+         {{ error | safe }}
+      </div>
+        <div class="files-table" id="files_table">
+          <table>
+            <tr>
+                <th>S.No.</th>
+                <th>File ID</th>
+                <th>Product Info Uploaded</th>
+                <th>Uploaded Timestamp</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for file in files %}
+            <tr>
+                <td></td>
+                <td>{{file[1]}}</td>
+                <td>
+                    {% if file[2] %}
+                    YES
+                    {% else %}
+                    NO
+                    {% endif %}
+                </td>
+                <td>{{file[4]}}</td>
+                <td>{{file[3]}}</td>
+                <td>
+                    {% if file[3] == "SUCCESS" %}
+                    <a href="/file_data?file_id={{file[1]}}" class="button">Select</a>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if file[3] != "IN-PROGRESS" %}
+                    <a href="/delete_file?file_id={{file[1]}}" class="button">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+          </table>
+      </div>
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+  </body>
+</html>

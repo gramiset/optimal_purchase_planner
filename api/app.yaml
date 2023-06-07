@@ -1,0 +1,8 @@
+runtime: python37
+service: api
+instance_class: F4
+
+env_variables:
+  APP_ENV: 'gcp'
+  PGDB_USER: 'gcp-pg-prod'
+  PGDB_PWD: 'GcpLearn$1'

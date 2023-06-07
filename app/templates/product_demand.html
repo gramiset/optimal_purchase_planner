@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Estimate Product Demand</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+      {% if shortfalls_table %}
+    <div class="body">
+      {% else %}
+    <div class="body">
+      {% endif %}
+    <div class="report">
+      <h1>Product Demand Estimation</h1>
+      <span>Below are the estimates based on Auto ARIMA. Please use them only as estimates and not the actual(s).</span>
+      <br><div class="sub-title">Future demand estimates for next 12 months</div>
+      <br><span><a href="#" onclick="downloadTableAsCsv('future_demand_table','FutureDemand');">Download as CSV</a></span>
+      <div class="scrollable-table">
+        {{ future_demand_table|safe }}
+      </div>
+      {% if shortfalls_table %}
+      <br><div class="sub-title">Shortfalls estimates for next 12 months</div>
+      <span>In shortfalls, if it is negative then it is excess stock and if it is positive then it is stock-out.</span>
+      <br><span><a href="#" onclick="downloadTableAsCsv('shortfalls_table','Shortfalls');">Download as CSV</a></span>
+      <div class="scrollable-table">
+        {{ shortfalls_table|safe }}
+      </div>
+      {% endif %}
+      {% if total_cost_table %}
+      <br><div class="sub-title">Total cost estimate based on shortfalls</div>
+      <span>In shortfalls, if it is negative then it is excess stock and if it is positive then it is stock-out.
+      <br><a href="#" onclick="downloadTableAsCsv('total_cost_table','TotalCost');">Download as CSV</a></span>
+      <div class="scrollable-table">
+        {{ total_cost_table|safe }}
+      </div>
+      {% endif %}
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+    <script type="text/javascript" src="static/js/convert.js" ></script>
+  </body>
+</html>

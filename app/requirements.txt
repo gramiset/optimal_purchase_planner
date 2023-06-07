@@ -1,0 +1,11 @@
+Flask
+Flask-reCaptcha
+pandas
+bcrypt
+psycopg2
+gunicorn
+sib_api_v3_sdk
+numpy
+google-cloud-storage
+fsspec
+gcsfs

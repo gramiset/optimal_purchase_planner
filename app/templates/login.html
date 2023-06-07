@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | Login</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="h_menu_body">
+    <div class="body">
+     <div class="login">
+         <div class="title">
+            Login
+         </div>
+         <form action="login" method="post"  onsubmit="return captchaCheck();">
+            <div class="field">
+               <input type="email" name="email" id="email" value="{{ email | safe }}" required
+                      pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                      oninvalid="this.setCustomValidity('Please enter your email address.')"
+                      oninput="this.setCustomValidity('')">
+               <label>Email Address</label>
+            </div>
+            <div class="field">
+               <input type="password" name="pwd" id="pwd" required
+                      oninvalid="this.setCustomValidity('Please enter your password.')"
+                      oninput="this.setCustomValidity('')">
+               <label>Password</label>
+            </div>
+             <br>
+            <div class="g-recaptcha" data-sitekey="{{ captcha_site_key }}"></div>
+            <div class="field">
+               <input type="submit" value="Login">
+            </div>
+            <div class="link">
+               <a href="forgot_password">Forgot password?</a>
+            </div>
+            <div class="link">
+               Not a member? <a href="signup">Signup now</a>
+            </div>
+            <div class="error" id="error">
+                {{ error | safe }}
+            </div>
+         </form>
+      </div>
+    </div>
+    </section>
+
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+    <script type="text/javascript" src="static/js/form_validate.js" ></script>
+  </body>
+</html>

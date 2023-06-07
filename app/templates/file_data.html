@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <title>Purchase Planner | File Data</title>
+  </head>
+  <body onload="setInnerHTML()">
+    <div id="menu"></div>
+    <section class="v_menu_body">
+    <div class="body">
+    <div class="report">
+      {% if prod_info_table %}
+      <h1>Product Info Data</h1>
+      <span>Displays the first 100 rows of data from the uploaded CSV file.</span>
+      <div class="scrollable-table">
+        {{ prod_info_table|safe }}
+      </div>
+      <br>
+      {% endif %}
+      <h1>Past Sales Data</h1>
+      <span>Displays the first 100 rows of data from the uploaded CSV file.</span>
+      <div class="scrollable-table">
+        {{ sales_data_table|safe }}
+      </div>
+    </div>
+    </div>
+   </section>
+    <script type="text/javascript" src="static/js/menu.js" ></script>
+  </body>
+</html>
