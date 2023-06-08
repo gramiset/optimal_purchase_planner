@@ -179,7 +179,7 @@ Below are the application deployment steps. If end user, user no need to worry a
 
 This project contaisn 2 application
 1) Website App
-2) API - which is helper and invokes by the website app whenever file uploaded by user to do the preprocessing as speperate process as it is Low Latency Job, takes couple of minutes. 
+2) API - which is helper and invokes by the website app whenever file uploaded by user to do the preprocessing as speperate process as it is High Latency Job, takes couple of minutes. 
 
 - We need to deploy both the applications in Google cloud or we need to run both the applications in Local on different ports. 
 - We need to **update the API url** in Website App config files. 
